@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int characterReplacement(std::string s, int k) {
+        unordered_map<char, int> m;;
+        int l = 0, res = 0, mf = 0;
+        for (int r = 0; r<s.size();r++) {
+            m[s[r]]++;
+            mf = max(m[s[r]], mf);
+            while(r-l+1-k>mf) 
+                m[s[l++]]--;
+            res = max(res, r-l+1);
+        }
+        return res;
+    }
+};
